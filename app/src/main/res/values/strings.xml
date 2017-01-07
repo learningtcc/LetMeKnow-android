@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LetMeKnow</string>
+    <string name="EmailLabel">Email</string>
+    <string name="PasswordLabel">Password</string>
+    <string name="LoginLabel">Login</string>
+    <string name="RegisterLabel">Register</string>
+    <string name="LoginFail">Wrong user or password, if you don\'t have a username click on register</string>
+</resources>
