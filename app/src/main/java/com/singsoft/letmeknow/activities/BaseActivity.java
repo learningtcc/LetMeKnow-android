@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+<<<<<<< HEAD
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetailsHandler;
@@ -14,6 +15,16 @@ import com.singsoft.letmeknow.R;
 import com.singsoft.letmeknow.utils.CognitoHelper;
 
 
+=======
+import com.amazonaws.auth.CognitoCredentialsProvider;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoAccessToken;
+import com.singsoft.letmeknow.R;
+import com.singsoft.letmeknow.utils.CognitoHelper;
+
+>>>>>>> Support logout not yet working
 /**
  * Created by meidan.zemer on 1/13/2017.
  */
