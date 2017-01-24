@@ -1,8 +1,8 @@
 package com.singsoft.letmeknow.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,9 +13,8 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.singsoft.letmeknow.R;
 import com.singsoft.letmeknow.utils.CognitoHelper;
 
@@ -29,12 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         setMessage("");
     }
     protected void setMessage(String text){
-        TextView textView = (TextView)findViewById(R.id.textViewMessage);
+        TextView textView = (TextView)findViewById(R.id.textViewMessageLogin);
         textView.setText(text);
     }
 
     protected void clearPassword(){
-        EditText passwordTextEditor = (EditText) findViewById(R.id.editTextPassword);
+        EditText passwordTextEditor = (EditText) findViewById(R.id.editTextPassword2);
         passwordTextEditor.setText(null);
     }
     protected String getEmail(){
@@ -42,12 +41,12 @@ public class LoginActivity extends AppCompatActivity {
         return emailTextEditor.getText().toString();
     }
     protected String getPassword(){
-        EditText passwordTextEditor = (EditText) findViewById(R.id.editTextPassword);
+        EditText passwordTextEditor = (EditText) findViewById(R.id.editTextPassword2);
         return passwordTextEditor.getText().toString();
     }
     public void onLoginClick(View view){
-        userPool.getUser(this.getEmail()).globalSignOutInBackground(genericHandler);
         setMessage("");
+        userPool.getUser(getEmail()).getSessionInBackground(authenticationHandler);
     }
 
     public void onRegisterClick(View view){
@@ -55,25 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    GenericHandler genericHandler = new GenericHandler() {
-        @Override
-        public void onSuccess() {
-            userPool.getUser(getEmail()).getSessionInBackground(authenticationHandler);
-
-        }
-
-        @Override
-        public void onFailure(Exception exception) {
-            userPool.getUser(getEmail()).getSessionInBackground(authenticationHandler);
-
-        }
-    };
-
     AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
         @Override
         public void onSuccess(CognitoUserSession cognitoUserSession, CognitoDevice device) {
-          Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-          startActivity(intent);
+            CognitoHelper.setCurrentSession(cognitoUserSession);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         }
 
         @Override
