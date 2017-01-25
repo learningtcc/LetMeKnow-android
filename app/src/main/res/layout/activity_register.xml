@@ -9,17 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.singsoft.letmeknow.activities.RegisterActivity">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/editTextEmail"
-        android:layout_alignRight="@+id/editTextEmail"
-        android:layout_alignEnd="@+id/editTextEmail"
-        android:layout_marginTop="35dp"
-        android:id="@+id/editTextPassword"
-        android:hint="@string/PasswordLabel" />
 
     <EditText
         android:layout_width="match_parent"
@@ -36,11 +25,45 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:id="@+id/buttonLogin"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/buttonRegister"
         android:text="@string/RegisterLabel"
-        android:onClick="onRegisterClick" />
+        android:onClick="onRegisterClick"
+        android:layout_below="@+id/editTextPassword2Register"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editTextPassword2Register"
+        android:hint="@string/PasswordLabel"
+        android:layout_below="@+id/editTextPasswordRegister"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:id="@+id/textViewMessageRegister"
+        android:layout_below="@+id/buttonRegister"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editTextPasswordRegister"
+        android:hint="@string/PasswordLabel"
+        android:layout_below="@+id/editTextEmail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
 
 </RelativeLayout>

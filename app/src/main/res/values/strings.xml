@@ -5,4 +5,9 @@
     <string name="LoginLabel">Login</string>
     <string name="RegisterLabel">Register</string>
     <string name="LoginFail">Wrong user or password, if you don\'t have a username click on register</string>
+    <string name="EmailNotValid">Enter valid email</string>
+    <string name="PasswordNotValid">Password should be 8 charectars length with capital letter</string>
+    <string name="PasswordVerificationFailed">Password verification failed</string>
+    <string name="ConfimUserTitle">Confim User</string>
+    <string name="ConfirmLabel">Confirm User</string>
 </resources>

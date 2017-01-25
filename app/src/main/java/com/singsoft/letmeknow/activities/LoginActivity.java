@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     protected void clearPassword(){
-        EditText passwordTextEditor = (EditText) findViewById(R.id.editTextPassword2);
+        EditText passwordTextEditor = (EditText) findViewById(R.id.editTextPasswordLogin);
         passwordTextEditor.setText(null);
     }
     protected String getEmail(){
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         return emailTextEditor.getText().toString();
     }
     protected String getPassword(){
-        EditText passwordTextEditor = (EditText) findViewById(R.id.editTextPassword2);
+        EditText passwordTextEditor = (EditText) findViewById(R.id.editTextPasswordLogin);
         return passwordTextEditor.getText().toString();
     }
     public void onLoginClick(View view){

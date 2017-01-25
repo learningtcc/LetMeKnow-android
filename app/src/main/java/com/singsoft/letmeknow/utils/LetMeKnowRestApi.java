@@ -3,7 +3,6 @@ package com.singsoft.letmeknow.utils;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.mobileconnectors.apigateway.ApiClientFactory;
 import com.amazonaws.mobileconnectors.apigateway.ApiRequest;
@@ -16,11 +15,6 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Mult
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.util.IOUtils;
-import com.amazonaws.util.StringInputStream;
-
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by meidan.zemer on 1/21/2017.

@@ -13,14 +13,6 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetail
 import com.singsoft.letmeknow.R;
 import com.singsoft.letmeknow.utils.CognitoHelper;
 
-import com.amazonaws.auth.CognitoCredentialsProvider;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoAccessToken;
-import com.singsoft.letmeknow.R;
-import com.singsoft.letmeknow.utils.CognitoHelper;
-
 /**
  * Created by meidan.zemer on 1/13/2017.
  */

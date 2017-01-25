@@ -38,8 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        passwordTextEditor = (EditText) findViewById(R.id.editTextPassword);
-        passwordTextEditor2 = (EditText) findViewById(R.id.editTextPassword2);
+        passwordTextEditor = (EditText) findViewById(R.id.editTextPasswordRegister);
+        passwordTextEditor2 = (EditText) findViewById(R.id.editTextPassword2Register);
         registerBtn = (Button) findViewById(R.id.buttonRegister);
         setMessage("");
         passwordTextEditor2.addTextChangedListener(passwword2Watcher);
