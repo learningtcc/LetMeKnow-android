@@ -42,17 +42,8 @@ public class LetMeKnowRestApi extends AsyncTask<Context, Void, String> {
     protected void callApiGateWay(){
         String rc;
         try {
-           /* CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
-                    context,          // activity context
-                    "eu-west-1:9338fe1e-fd4f-4f86-be21-25af608e7668", // Identity Pool ID
-                    Regions.EU_WEST_1// region of Cognito identity pool
-            );*/
-          /*  Map<String, String> logins = new HashMap<String, String>();
-            logins.put("cognito-idp.eu-west-1.amazonaws.com/eu-west-1_5RhkEuTBj",CognitoHelper.getCurrentSession().getIdToken().getJWTToken());
-            credentialsProvider.setLogins(logins);*/
             ApiClientFactory factory = new ApiClientFactory()
                     .apiKey("BkmjsMabWHauqcyW3FFAf2fcIEQ2LcPT2qjqvzKW");
-                    //.credentialsProvider(credentialsProvider);
             factory.endpoint("https://8rd0wztxo5.execute-api.eu-west-1.amazonaws.com/Dev/LetMeKnowTestUser");
             factory.region(Regions.EU_WEST_1.getName());
             final LetMeKnowLambdaMicroserviceTestClient letMeKnowLambdaMicroserviceTestClient = factory.build(LetMeKnowLambdaMicroserviceTestClient.class);
