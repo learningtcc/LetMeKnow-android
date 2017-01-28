@@ -1,5 +1,6 @@
 package com.singsoft.letmeknow.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +8,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetailsHandler;
 import com.singsoft.letmeknow.R;
@@ -18,8 +25,22 @@ import com.singsoft.letmeknow.utils.CognitoHelper;
  */
 
 public class BaseActivity extends AppCompatActivity {
+    private ProgressDialog progress;
+
+    protected void showProgressDialog(){
+        progress.setTitle("Loading");
+        progress.setMessage("Loading");
+        progress.show();
+    }
+
+    protected void hideProgressDialog(){
+        progress.dismiss();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        progress = new ProgressDialog(this);
+        showProgressDialog();
         super.onCreate(savedInstanceState);
         verifyUserAuthentication();
     }
@@ -62,13 +83,31 @@ public class BaseActivity extends AppCompatActivity {
     GetDetailsHandler getDetailsHandler = new GetDetailsHandler() {
         @Override
         public void onSuccess(CognitoUserDetails cognitoUserDetails) {
-
+            if(CognitoHelper.getCurrentSession() == null)
+                CognitoHelper.getUserPool(getApplicationContext()).getCurrentUser().getSession(authenticationHandler);
+            else
+                hideProgressDialog();
         }
-
         @Override
         public void onFailure(Exception exception) {
             moveToLogin();
         }
+    };
+
+    AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
+        @Override
+        public void onSuccess(CognitoUserSession cognitoUserSession, CognitoDevice device) {
+            CognitoHelper.setCurrentSession(cognitoUserSession);
+            hideProgressDialog();
+        }
+        @Override
+        public void authenticationChallenge(ChallengeContinuation continuation) {}
+        @Override
+        public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String username) { }
+        @Override
+        public void getMFACode(MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation) {}
+        @Override
+        public void onFailure(Exception e) {}
     };
 
     GenericHandler genericHandler = new GenericHandler() {
@@ -82,5 +121,4 @@ public class BaseActivity extends AppCompatActivity {
             moveToLogin();
         }
     };
-
 }
