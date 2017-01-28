@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.singsoft.letmeknow.R;
-import com.singsoft.letmeknow.utils.LetMeKnowRestApi;
+import com.singsoft.letmeknow.rest.LetMeKnowRestApi;
 
 import java.util.concurrent.ExecutionException;
 
@@ -16,6 +16,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setMessage("");
     }
     protected void setMessage(String text){
         TextView textView = (TextView)findViewById(R.id.textView2);
@@ -23,6 +24,7 @@ public class MainActivity extends BaseActivity {
     }
     public void invokeRestApi(View view){
         try {
+            setMessage("");
             LetMeKnowRestApi spi = new LetMeKnowRestApi();
             String str = spi.execute(this).get();
             setMessage(str);

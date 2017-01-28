@@ -46,7 +46,6 @@ public class BaseActivity extends AppCompatActivity {
             CognitoHelper.getUserPool(getApplicationContext())
                     .getCurrentUser()
                     .globalSignOutInBackground(genericHandler);
-
         }
         return true;
     }
