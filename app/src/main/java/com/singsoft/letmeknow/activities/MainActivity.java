@@ -2,38 +2,59 @@ package com.singsoft.letmeknow.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.singsoft.letmeknow.R;
+import com.singsoft.letmeknow.entities.ContactPoint;
+import com.singsoft.letmeknow.rest.LetMeKnowApiContactPoints;
 import com.singsoft.letmeknow.rest.LetMeKnowRestApi;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends BaseActivity {
-
+    protected LetMeKnowApiContactPoints letMeKnowApiContactPoints = new LetMeKnowApiContactPoints();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setMessage("");
+        getContactPoints();
     }
     protected void setMessage(String text){
         TextView textView = (TextView)findViewById(R.id.textView2);
         textView.setText(text);
     }
-    public void invokeRestApi(View view){
+    protected void getContactPoints(){
+        setMessage("");
         try {
-            setMessage("");
-            LetMeKnowRestApi spi = new LetMeKnowRestApi();
-            String str = spi.execute(this).get();
-            setMessage(str);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+            ArrayList<ContactPoint> contactPoints = null;
+            contactPoints = letMeKnowApiContactPoints.getUserContactPoints();
+            for(ContactPoint cp : contactPoints){
+                TextView tv = new TextView(this);
+                tv.setText(cp.getName());
+                setContentView(tv);
+            }
+        } catch (Exception e) {
+            setMessage(e.getMessage());
         }
+    }
 
+    public void invokeRestApi(View view){
+        setMessage("");
+        try {
+            EditText newCpName = (EditText) findViewById(R.id.NewCPtxt);
+            ContactPoint cp = new ContactPoint();
+            cp.setName(newCpName.getText().toString());
+            cp = letMeKnowApiContactPoints.addContactPoint(cp);
+            TextView tv = new TextView(this);
+            tv.setText(cp.getName());
+            setContentView(tv);
+        } catch (Exception e) {
+           setMessage(e.getMessage());
+        }
     }
 
 }

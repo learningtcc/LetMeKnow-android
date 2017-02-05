@@ -10,4 +10,5 @@
     <string name="PasswordVerificationFailed">Password verification failed</string>
     <string name="ConfimUserTitle">Confim User</string>
     <string name="ConfirmLabel">Confirm User</string>
+    <string name="AddNewContactPointLabel">Add New</string>
 </resources>
