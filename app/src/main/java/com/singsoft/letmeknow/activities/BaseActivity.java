@@ -37,11 +37,15 @@ public class BaseActivity extends AppCompatActivity {
         progress.dismiss();
     }
 
+    protected void onCreateDone(){
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         progress = new ProgressDialog(this);
         showProgressDialog();
-        super.onCreate(savedInstanceState);
         verifyUserAuthentication();
     }
 
@@ -85,8 +89,10 @@ public class BaseActivity extends AppCompatActivity {
         public void onSuccess(CognitoUserDetails cognitoUserDetails) {
             if(CognitoHelper.getCurrentSession() == null)
                 CognitoHelper.getUserPool(getApplicationContext()).getCurrentUser().getSession(authenticationHandler);
-            else
+            else {
                 hideProgressDialog();
+                onCreateDone();
+            }
         }
         @Override
         public void onFailure(Exception exception) {
@@ -99,6 +105,7 @@ public class BaseActivity extends AppCompatActivity {
         public void onSuccess(CognitoUserSession cognitoUserSession, CognitoDevice device) {
             CognitoHelper.setCurrentSession(cognitoUserSession);
             hideProgressDialog();
+            onCreateDone();
         }
         @Override
         public void authenticationChallenge(ChallengeContinuation continuation) {}

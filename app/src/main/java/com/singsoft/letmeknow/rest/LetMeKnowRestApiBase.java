@@ -28,7 +28,7 @@ public abstract class LetMeKnowRestApiBase extends AsyncTask<Object, Void , JSON
     }
 
     protected JSONObject callRestApi(HttpMethodName method, String path, JSONObject body ){
-        JSONObject jsonObj = new JSONObject();
+        JSONObject jsonObj;
         String rc;
         try {
             ApiClientFactory factory = new ApiClientFactory()
@@ -47,8 +47,10 @@ public abstract class LetMeKnowRestApiBase extends AsyncTask<Object, Void , JSON
             }
             ApiResponse res = letMeKnowRest.execute(apiRequest);
             rc = IOUtils.toString(res.getContent());
+            jsonObj = new JSONObject(rc);
         } catch (Exception e) {
             rc = e.getMessage();
+            jsonObj = null;
         }
         return jsonObj;
     }

@@ -8,10 +8,8 @@ import android.widget.TextView;
 import com.singsoft.letmeknow.R;
 import com.singsoft.letmeknow.entities.ContactPoint;
 import com.singsoft.letmeknow.rest.LetMeKnowApiContactPoints;
-import com.singsoft.letmeknow.rest.LetMeKnowRestApi;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends BaseActivity {
@@ -21,8 +19,13 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setMessage("");
+    }
+
+    @Override
+    protected  void onCreateDone(){
         getContactPoints();
     }
+
     protected void setMessage(String text){
         TextView textView = (TextView)findViewById(R.id.textView2);
         textView.setText(text);

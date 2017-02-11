@@ -18,15 +18,8 @@ public class LetMeKnowApiContactPoints {
     public ContactPoint addContactPoint(ContactPoint contactPoint) throws ExecutionException, InterruptedException {
         ContactPoint newContactPoint = null;
         AddContactPointRestApi addContactPointRestApi = new AddContactPointRestApi();
-        addContactPointRestApi.execute(contactPoint).get();
+        JSONObject jsonObject = addContactPointRestApi.execute(contactPoint).get();
         return newContactPoint;
-    }
-
-    public ArrayList<ContactPoint> getUserContactPoints() throws ExecutionException, InterruptedException {
-        ArrayList<ContactPoint> contactPoints = new ArrayList<>();
-        GetUserContactPointsRestApi getUserContactPointsRestApi = new GetUserContactPointsRestApi();
-        JSONObject jsonObject = getUserContactPointsRestApi.execute().get();
-        return contactPoints;
     }
 
     class AddContactPointRestApi extends  LetMeKnowRestApiBase {
@@ -40,6 +33,13 @@ public class LetMeKnowApiContactPoints {
                 return null;
             }
         }
+    }
+
+    public ArrayList<ContactPoint> getUserContactPoints() throws ExecutionException, InterruptedException {
+        ArrayList<ContactPoint> contactPoints = new ArrayList<>();
+        GetUserContactPointsRestApi getUserContactPointsRestApi = new GetUserContactPointsRestApi();
+        JSONObject jsonObject = getUserContactPointsRestApi.execute().get();
+        return contactPoints;
     }
     class GetUserContactPointsRestApi extends  LetMeKnowRestApiBase{
         @Override
